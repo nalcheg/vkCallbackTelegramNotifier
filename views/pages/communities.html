@@ -1,0 +1,51 @@
+{{ template "template.html" . }}
+{{ define "css" }}
+{{ end}}
+
+{{ define "content" }}
+<div class="container">
+    <br/>
+    <h2><strong>Паблики:</strong></h2>
+    <table class="table table-sm table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="1px">#</th>
+            <th width="1px">vk_id</th>
+            <th>name</th>
+            <th>type</th>
+            <th>secret key</th>
+            <th>response code</th>
+            <th width="1px">edit</th>
+            <th width="1px">delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range $key, $val := .communities}}
+        <tr>
+            <th scope="row">{{ $val.Id }}</th>
+            <td>{{ $val.VkId }}</td>
+            <td>{{ $val.Name }}</td>
+            <td>{{ $val.Type }}</td>
+            <td>{{ $val.Key }}</td>
+            <td>{{ $val.CheckResponse }}</td>
+            <td style="text-align: center;">
+                <a href="/communities/edit?id={{ $val.Id }}"><i class="fas fa-edit"></i></a>
+            </td>
+            <td style="text-align: center;">
+                <a href="/communities/delete?id={{ $val.Id }}"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary">
+        <a href="/communities/add"><span style="color: white;">Добавить</span></a>
+    </button>
+    <button type="button" class="btn btn-secondary">
+        <a href="/">Назад</a>
+    </button>
+</div>
+{{ end }}
+
+{{ define "js" }}
+{{ end}}

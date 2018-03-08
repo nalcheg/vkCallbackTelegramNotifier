@@ -1,0 +1,4 @@
+.idea/
+conf/app.conf
+data.db
+go_build_main_go

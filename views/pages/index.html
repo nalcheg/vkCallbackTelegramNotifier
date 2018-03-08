@@ -1,0 +1,14 @@
+{{ template "template.html" . }}
+{{ define "css" }}
+<link rel="stylesheet" href="/static/css/current.css">
+{{ end}}
+
+{{ define "content" }}
+        <br/>
+<p> Preved {{ .user }}</p>
+<p><a href="/communities">communities</a></p>
+{{ end }}
+
+{{ define "js" }}
+<script src="/static/js/current.js"></script>
+{{ end}}

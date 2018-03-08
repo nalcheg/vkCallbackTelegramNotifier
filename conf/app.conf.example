@@ -1,0 +1,13 @@
+appname = vknotifier
+httpport = 3000
+runmode = dev
+sessionon = true
+EnableAdmin = true
+copyrequestbody = true
+
+dbDirectory = % directory for sqlite db file %
+dbFileName = % filename of sqlite db%
+
+botId = % Telegram bot id %
+botToken = % Telegram bot token %
+chatId = % Telegram chat id %

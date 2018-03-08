@@ -1,0 +1,43 @@
+{{ template "template.html" . }}
+{{ define "css" }}
+{{ end}}
+
+{{ define "content" }}
+<div class="container">
+    <br/>
+    <form method="post" action="{{ .action }}">
+        <div class="form-group col-md-5 mb-4">
+            <label for="id1">Community id</label>
+            <input name="communityId" type="text" class="form-control" id="id1" placeholder="Community id"
+                   value="{{ .VkId }}">
+        </div>
+        <div class="form-group col-md-5 mb-4">
+            <label for="id2">Community name</label>
+            <input name="communityName" type="text" class="form-control" id="id2" placeholder="Community name"
+                   value="{{ .Name }}">
+        </div>
+        <div class="form-group col-md-5 mb-4">
+            <label for="id">Type</label>
+            <input name="communityType" type="text" class="form-control" id="id" placeholder="Type"
+                   value="{{ .Type }}">
+        </div>
+        <div class="form-group col-md-5 mb-4">
+            <label for="id3">Response code</label>
+            <input name="responseCode" type="text" class="form-control" id="id3" placeholder="Response code"
+                   value="{{ .CheckResponse }}">
+        </div>
+        <div class="form-group col-md-5 mb-4">
+            <label for="id4">Secret key</label>
+            <textarea name="secretKey" type="text" class="form-control" id="id4"
+                      placeholder="Key">{{ .Key }}</textarea>
+        </div>
+        <input name="Id" type="hidden" value="{{ .Id }}">
+        <div class="form-group col-md-5 mb-4">
+            <button type="submit" class="btn btn-primary">{{ .ButtonText }}</button>
+        </div>
+    </form>
+</div>
+{{ end }}
+
+{{ define "js" }}
+{{ end}}
