@@ -7,6 +7,7 @@ import (
     "strconv"
     "github.com/astaxie/beego"
     "vknotifier/models"
+    "net/url"
 )
 
 var communities map[int]string
@@ -62,19 +63,21 @@ func (c *VkCallbackController) Post() {
     } else {
         SendMessage(message)
         c.Data["response"] = "ok"
-            c.TplName = "plainResponse.html"
+        c.TplName = "plainResponse.html"
     }
 }
 
 func SendMessage(message string) {
-    url := "https://api.telegram.org/bot" + beego.AppConfig.String("botId") + ":"
-    url += beego.AppConfig.String("botToken") + "/sendMessage"
+    apiUrl := "https://api.telegram.org/bot" + beego.AppConfig.String("botId") + ":"
+    apiUrl += beego.AppConfig.String("botToken") + "/sendMessage"
     var jsonStr = []byte(`{"chat_id":"-` + beego.AppConfig.String("chatId") + `","text":"` + message + `"}`)
 
-    req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+    req, err := http.NewRequest("POST", apiUrl, bytes.NewBuffer(jsonStr))
     req.Header.Set("Content-Type", "application/json")
 
-    client := &http.Client{}
+    proxyUrl, err := url.Parse("socks5://127.0.0.1:9050")
+    client := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
+
     resp, err := client.Do(req)
     if err != nil {
         panic(err)
